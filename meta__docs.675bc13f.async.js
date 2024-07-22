@@ -1,0 +1,56 @@
+"use strict";(self.webpackChunkheitu_hook=self.webpackChunkheitu_hook||[]).push([[904],{78636:function(v,n,e){e.r(n),e.d(n,{demos:function(){return r}});var i=e(67294),a=e(44866),r={}},97086:function(v,n,e){e.r(n),e.d(n,{demos:function(){return r}});var i=e(67294),a=e(29876),r={}},89342:function(v,n,e){e.r(n),e.d(n,{demos:function(){return C}});var i=e(17061),a=e.n(i),r=e(27424),L=e.n(r),k=e(17156),D=e.n(k),g=e(67294),B=e(57491),C={"docs-hooks-use-in-view-demo-0":{component:g.memo(g.lazy(D()(a()().mark(function E(){var l,o,d,h;return a()().wrap(function(t){for(;;)switch(t.prev=t.next){case 0:return t.next=2,Promise.resolve().then(e.t.bind(e,67294,19));case 2:return l=t.sent,o=l.default,t.next=6,Promise.resolve().then(e.bind(e,55392));case 6:return d=t.sent,h=d.useInView,t.abrupt("return",{default:function(){var c=h(),u=L()(c,2),P=u[0],I=u[1];return o.createElement("div",null,o.createElement("div",null,I?"active":"inactive"),o.createElement("div",{style:{display:"flex",alignItems:"center",justifyContent:"center",height:"900px"}},o.createElement("div",{ref:P},"12312312")))}});case 9:case"end":return t.stop()}},E)})))),asset:{type:"BLOCK",id:"docs-hooks-use-in-view-demo-0",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import React, { LegacyRef, useEffect } from 'react';
+import { useInView } from 'heitu-hook';
+
+export default () => {
+  const [targetRef, inView] = useInView();
+  return (
+    <div>
+      <div>{inView ? 'active' : 'inactive'}</div>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '900px',
+        }}
+      >
+        <div ref={targetRef as LegacyRef<HTMLDivElement>}>12312312</div>
+      </div>
+    </div>
+  );
+};`},react:{type:"NPM",value:"18.3.1"},"heitu-hook":{type:"NPM",value:"0.0.1"}},entry:"index.tsx"},context:{react:e(67294),"heitu-hook":e(55392)},renderOpts:{compile:function(){var E=D()(a()().mark(function o(){var d,h=arguments;return a()().wrap(function(t){for(;;)switch(t.prev=t.next){case 0:return t.next=2,e.e(19).then(e.bind(e,4019));case 2:return t.abrupt("return",(d=t.sent).default.apply(d,h));case 3:case"end":return t.stop()}},o)}));function l(){return E.apply(this,arguments)}return l}()}}}},23929:function(v,n,e){e.r(n),e.d(n,{demos:function(){return C}});var i=e(17061),a=e.n(i),r=e(27424),L=e.n(r),k=e(17156),D=e.n(k),g=e(67294),B=e(86556),C={"docs-hooks-use-infinite-scroll-demo-0":{component:g.memo(g.lazy(D()(a()().mark(function E(){var l,o,d,h,_,t,m;return a()().wrap(function(u){for(;;)switch(u.prev=u.next){case 0:return m=function(I){var M=I.hasMore,f=I.loadMore,T=t(),O=L()(T,2),A=O[0],y=O[1];return d(function(){y&&M&&(f==null||f())},[M,y,f]),o.createElement("div",{ref:A},M?"\u52A0\u8F7D\u4E2D...":"\u6CA1\u6709\u66F4\u591A\u4E86~")},u.next=3,Promise.resolve().then(e.t.bind(e,67294,19));case 3:return l=u.sent,o=l.default,d=l.useEffect,u.next=8,Promise.resolve().then(e.bind(e,55392));case 8:return h=u.sent,_=h.useInfiniteScroll,t=h.useInView,u.abrupt("return",{default:function(){var I=new Array(100).fill(1).map(function(A,y){return y}),M=_({dataSource:I,pageSize:10,delay:100}),f=M.data,T=M.hasMore,O=M.loadMore;return o.createElement("div",{style:{display:"flex",flexDirection:"column",height:"400px",overflowY:"auto"}},f==null?void 0:f.map(function(A){return o.createElement("span",null,A)}),o.createElement(m,{loadMore:O,hasMore:T}))}});case 12:case"end":return u.stop()}},E)})))),asset:{type:"BLOCK",id:"docs-hooks-use-infinite-scroll-demo-0",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import React, { LegacyRef, useEffect } from 'react';
+import { useInfiniteScroll, useInView } from 'heitu-hook';
+
+function InfiniteScrollTrigger({ hasMore, loadMore }) {
+  const [targetRef, inView] = useInView();
+  useEffect(() => {
+    if (inView && hasMore) loadMore?.();
+  }, [hasMore, inView, loadMore]);
+  return <div ref={targetRef}>{hasMore ? '\u52A0\u8F7D\u4E2D...' : '\u6CA1\u6709\u66F4\u591A\u4E86~'}</div>;
+}
+
+export default () => {
+  // mock\u63A5\u53E3\u83B7\u53D6\u7684\u6570\u636E
+  const dataSource = new Array(100).fill(1).map((item, index) => index);
+  const { data, hasMore, loadMore } = useInfiniteScroll({
+    dataSource, // \u6240\u6709\u6570\u636E\u6E90
+    pageSize: 10, // \u4E00\u6B21\u6027\u52A0\u8F7D10\u6761
+    delay: 100, // 100ms\u5EF6\u65F6
+  });
+
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '400px',
+        overflowY: 'auto',
+      }}
+    >
+      {data?.map((item) => {
+        return <span>{item}</span>;
+      })}
+      <InfiniteScrollTrigger loadMore={loadMore} hasMore={hasMore} />
+    </div>
+  );
+};`},react:{type:"NPM",value:"18.3.1"},"heitu-hook":{type:"NPM",value:"0.0.1"}},entry:"index.tsx"},context:{react:e(67294),"heitu-hook":e(55392)},renderOpts:{compile:function(){var E=D()(a()().mark(function o(){var d,h=arguments;return a()().wrap(function(t){for(;;)switch(t.prev=t.next){case 0:return t.next=2,e.e(19).then(e.bind(e,4019));case 2:return t.abrupt("return",(d=t.sent).default.apply(d,h));case 3:case"end":return t.stop()}},o)}));function l(){return E.apply(this,arguments)}return l}()}}}},11171:function(v,n,e){e.r(n),e.d(n,{demos:function(){return r}});var i=e(67294),a=e(68537),r={}},73661:function(v,n,e){e.r(n),e.d(n,{demos:function(){return r}});var i=e(67294),a=e(12395),r={}},55392:function(v,n,e){e.r(n),e.d(n,{useInView:function(){return k},useInfiniteScroll:function(){return E}});var i=e(27424),a=e.n(i),r=e(67294),L=function(){var o=arguments.length>0&&arguments[0]!==void 0?arguments[0]:{root:null,rootMargin:"0px",threshold:1},d=arguments.length>1&&arguments[1]!==void 0?arguments[1]:!1,h=(0,r.useState)(!1),_=a()(h,2),t=_[0],m=_[1],c=(0,r.useRef)(null);return(0,r.useEffect)(function(){var u=new IntersectionObserver(function(P){P.forEach(function(I){I.isIntersecting?(m(!0),d&&u.unobserve(I.target)):m(!1)})},o);return c!=null&&c.current&&u.observe(c.current),function(){c!=null&&c.current&&u.unobserve(c.current)}},[o,d]),[c,t]},k=L,D=e(17061),g=e.n(D),B=e(17156),C=e.n(B);function E(l){var o=l.dataSource,d=l.delay,h=d===void 0?100:d,_=l.pageSize,t=_===void 0?10:_,m=l.fetchData,c=(0,r.useState)(!1),u=a()(c,2),P=u[0],I=u[1],M=(0,r.useState)(!0),f=a()(M,2),T=f[0],O=f[1],A=(0,r.useState)([]),y=a()(A,2),s=y[0],K=y[1];function w(){return U.apply(this,arguments)}function U(){return U=C()(g()().mark(function j(){return g()().wrap(function(p){for(;;)switch(p.prev=p.next){case 0:if(!(!(o!=null&&o.length)&&!m)){p.next=2;break}return p.abrupt("return");case 2:if(!(!T||P)){p.next=4;break}return p.abrupt("return");case 4:if(I(!0),!o){p.next=10;break}return p.next=8,new Promise(function(x){setTimeout(function(){x(o==null?void 0:o.slice(s.length,s.length+t))},h)}).then(function(x){O((s==null?void 0:s.length)+(x==null?void 0:x.length)<(o==null?void 0:o.length)),K(function(S){return S==null?void 0:S.concat(x)})});case 8:p.next=12;break;case 10:return p.next=12,m==null?void 0:m({pageNum:s!=null&&s.length?Math.ceil((s==null?void 0:s.length)/t)+1:1,pageSize:t}).then(function(x){var S=x.list,R=S===void 0?[]:S,V=x.total,$=V===void 0?0:V;O((s==null?void 0:s.length)+(R==null?void 0:R.length)<$&&(R==null?void 0:R.length)>0),K(function(W){return W==null?void 0:W.concat(R)})});case 12:I(!1);case 13:case"end":return p.stop()}},j)})),U.apply(this,arguments)}return{data:s,setData:K,loading:P,hasMore:T,loadMore:w}}},44289:function(v,n,e){e.r(n),e.d(n,{texts:function(){return a}});var i=e(44866);const a=[{value:"This is a guide example.",paraId:0}]},69236:function(v,n,e){e.r(n),e.d(n,{texts:function(){return a}});var i=e(29876);const a=[{value:"This is a hooks example.",paraId:0}]},81856:function(v,n,e){e.r(n),e.d(n,{texts:function(){return a}});var i=e(57491);const a=[{value:"\u83B7\u53D6\u5143\u7D20\u662F\u5426\u5728\u53EF\u89C6\u8303\u56F4\u5185\u7684 hook",paraId:0,tocIndex:1},{value:"name",paraId:1,tocIndex:3},{value:"description",paraId:1,tocIndex:3},{value:"type",paraId:1,tocIndex:3},{value:"default",paraId:1,tocIndex:3},{value:"options",paraId:1,tocIndex:3},{value:"\u7ED1\u5B9A\u5143\u7D20\u7684\u57FA\u7840\u7528\u4F5C\u4F9D\u8D56",paraId:1,tocIndex:3},{value:"IntersectionObserverInit",paraId:1,tocIndex:3},{value:"{ root: null,rootMargin: '0px',threshold: 1,},",paraId:1,tocIndex:3},{value:"triggerOnce",paraId:1,tocIndex:3},{value:"\u89E6\u53D1\u4E00\u6B21",paraId:1,tocIndex:3},{value:"boolean",paraId:1,tocIndex:3},{value:"false",paraId:1,tocIndex:3},{value:"name",paraId:2,tocIndex:4},{value:"description",paraId:2,tocIndex:4},{value:"type",paraId:2,tocIndex:4},{value:"default",paraId:2,tocIndex:4},{value:"targetRef",paraId:2,tocIndex:4},{value:"\u7528\u4E8E\u7ED1\u5B9A\u6240\u4F5C\u7528\u5143\u7D20\u7684 ref",paraId:2,tocIndex:4},{value:"React.MutableRefObject<'HTMLElement' ,null>",paraId:2,tocIndex:4},{value:"-",paraId:2,tocIndex:4},{value:"inView",paraId:2,tocIndex:4},{value:"\u662F\u5426\u5728\u53EF\u89C6\u8303\u56F4\u5185",paraId:2,tocIndex:4},{value:"boolean",paraId:2,tocIndex:4},{value:"false",paraId:2,tocIndex:4}]},37306:function(v,n,e){e.r(n),e.d(n,{texts:function(){return a}});var i=e(86556);const a=[{value:"\u65E0\u7EBF\u6EDA\u52A8 hook",paraId:0,tocIndex:1},{value:"name",paraId:1,tocIndex:3},{value:"description",paraId:1,tocIndex:3},{value:"type",paraId:1,tocIndex:3},{value:"default",paraId:1,tocIndex:3},{value:"dataSource",paraId:1,tocIndex:3},{value:"\u6570\u636E\u6E90",paraId:1,tocIndex:3},{value:"any[]",paraId:1,tocIndex:3},{value:"-",paraId:1,tocIndex:3},{value:"delay",paraId:1,tocIndex:3},{value:"\u5EF6\u8FDF",paraId:1,tocIndex:3},{value:"number",paraId:1,tocIndex:3},{value:"100",paraId:1,tocIndex:3},{value:"pageSize",paraId:1,tocIndex:3},{value:"\u6BCF\u9875\u7684\u4E2A\u6570",paraId:1,tocIndex:3},{value:"number",paraId:1,tocIndex:3},{value:"10",paraId:1,tocIndex:3},{value:"fetchData",paraId:1,tocIndex:3},{value:"\u8BF7\u6C42\u63A5\u53E3",paraId:1,tocIndex:3},{value:"Promise<{total?: number; list?: T[]}>",paraId:1,tocIndex:3},{value:"-",paraId:1,tocIndex:3},{value:"name",paraId:2,tocIndex:4},{value:"description",paraId:2,tocIndex:4},{value:"type",paraId:2,tocIndex:4},{value:"default",paraId:2,tocIndex:4},{value:"data",paraId:2,tocIndex:4},{value:"\u6570\u636E",paraId:2,tocIndex:4},{value:"any[]",paraId:2,tocIndex:4},{value:"-",paraId:2,tocIndex:4},{value:"setData",paraId:2,tocIndex:4},{value:"\u64CD\u4F5C data",paraId:2,tocIndex:4},{value:"React.Dispatch<React.SetStateAction<any[]>>",paraId:2,tocIndex:4},{value:"-",paraId:2,tocIndex:4},{value:"loading",paraId:2,tocIndex:4},{value:"\u52A0\u8F7D\u72B6\u6001",paraId:2,tocIndex:4},{value:"boolean",paraId:2,tocIndex:4},{value:"false",paraId:2,tocIndex:4},{value:"hasMore",paraId:2,tocIndex:4},{value:"\u662F\u5426\u8FD8\u6709\u66F4\u591A\u6570\u636E",paraId:2,tocIndex:4},{value:"boolean",paraId:2,tocIndex:4},{value:"true",paraId:2,tocIndex:4},{value:"loadMore",paraId:2,tocIndex:4},{value:"\u52A0\u8F7D\u66F4\u591A\u6570\u636E\u7684\u51FD\u6570",paraId:2,tocIndex:4},{value:"Promise",paraId:2,tocIndex:4},{value:"-",paraId:2,tocIndex:4}]},51446:function(v,n,e){e.r(n),e.d(n,{texts:function(){return a}});var i=e(68537);const a=[]},55900:function(v,n,e){e.r(n),e.d(n,{texts:function(){return a}});var i=e(12395);const a=[]}}]);
